@@ -6,8 +6,8 @@ import { CompleteTodos } from "./components/CompleteTodos";
 
 export const App = () => {
   const [todoText, setTodoText] = useState("");
-  const [incompleteTodos, setIncompleteTodos] = useState(["aaa", "bbb"]);
-  const [completeTddos, setCompleteTodos] = useState(["ccc"]);
+  const [incompleteTodos, setIncompleteTodos] = useState([]);
+  const [completeTddos, setCompleteTodos] = useState([]);
 
   const onChangeTodoText = (event) => {
     setTodoText(event.target.value);
@@ -48,8 +48,11 @@ export const App = () => {
         todoText={todoText}
         onChange={onChangeTodoText}
         onClick={onClickAdd}
+        disabled={incompleteTodos.length >= 5}
       />
-
+      {incompleteTodos.length >= 5 && (
+        <p style={{ color: "red" }}>登録できるのは5個まで, 消化しろ！！</p>
+      )}
       <IncompleteTodos
         todos={incompleteTodos}
         onClickComplete={onClickComplete}
