@@ -10,11 +10,21 @@ export const App = () => {
   const [completeTddos, setCompleteTodos] = useState([]);
 
   const onChangeTodoText = (event) => {
+    // if (incompleteTodos.includes(event.target.value)) return;
+    // if (completeTddos.includes(event.target.value)) return;
     setTodoText(event.target.value);
   };
 
   const onClickAdd = () => {
     if (todoText === "") return;
+    if (incompleteTodos.includes(todoText)) {
+      alert("Todo is exist in incompleteList");
+      return;
+    }
+    if (completeTddos.includes(todoText)) {
+      alert("Todo is exist in completeList");
+      return;
+    }
     const newTodos = [...incompleteTodos, todoText];
     setIncompleteTodos(newTodos);
     setTodoText("");
